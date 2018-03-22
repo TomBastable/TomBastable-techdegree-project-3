@@ -35,6 +35,8 @@
 		F29F038D2061C0D200CB0C70 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F29F038B2061C0D200CB0C70 /* LaunchScreen.storyboard */; };
 		F29F03982061C0D200CB0C70 /* Bout_TimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29F03972061C0D200CB0C70 /* Bout_TimeTests.swift */; };
 		F29F03A32061C0D200CB0C70 /* Bout_TimeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29F03A22061C0D200CB0C70 /* Bout_TimeUITests.swift */; };
+		F2A3DA0520631679008FA1E1 /* HistoryBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A3DA0420631679008FA1E1 /* HistoryBook.swift */; };
+		F2A3DA07206320DF008FA1E1 /* GameShowHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A3DA06206320DF008FA1E1 /* GameShowHost.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +91,8 @@
 		F29F039E2061C0D200CB0C70 /* Bout TimeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Bout TimeUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F29F03A22061C0D200CB0C70 /* Bout_TimeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bout_TimeUITests.swift; sourceTree = "<group>"; };
 		F29F03A42061C0D200CB0C70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F2A3DA0420631679008FA1E1 /* HistoryBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryBook.swift; sourceTree = "<group>"; };
+		F2A3DA06206320DF008FA1E1 /* GameShowHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameShowHost.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +174,8 @@
 				F27D53672061C94400757923 /* Images */,
 				F29F03822061C0D200CB0C70 /* AppDelegate.swift */,
 				F29F03842061C0D200CB0C70 /* ViewController.swift */,
+				F2A3DA0420631679008FA1E1 /* HistoryBook.swift */,
+				F2A3DA06206320DF008FA1E1 /* GameShowHost.swift */,
 				F29F03862061C0D200CB0C70 /* Main.storyboard */,
 				F29F03892061C0D200CB0C70 /* Assets.xcassets */,
 				F29F038B2061C0D200CB0C70 /* LaunchScreen.storyboard */,
@@ -353,6 +359,8 @@
 			files = (
 				F29F03852061C0D200CB0C70 /* ViewController.swift in Sources */,
 				F29F03832061C0D200CB0C70 /* AppDelegate.swift in Sources */,
+				F2A3DA07206320DF008FA1E1 /* GameShowHost.swift in Sources */,
+				F2A3DA0520631679008FA1E1 /* HistoryBook.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -236,6 +236,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="eventFourLabel" destination="XwB-e4-HXp" id="aOC-5F-qfk"/>
+                        <outlet property="eventOneLabel" destination="hd2-ra-pRq" id="ZNn-Og-hqb"/>
+                        <outlet property="eventThreeLabel" destination="9ac-Ch-AEg" id="Fke-Oa-YzY"/>
+                        <outlet property="eventTwoLabel" destination="Lx2-9l-g15" id="w5x-1M-z3d"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
