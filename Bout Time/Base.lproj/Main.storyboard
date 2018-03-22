@@ -39,6 +39,9 @@
                                         </constraints>
                                         <state key="normal" image="down_full.png"/>
                                         <state key="highlighted" image="down_full_selected.png"/>
+                                        <connections>
+                                            <action selector="moveEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="v6e-8a-7aZ"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sputnik was launched by the USSR" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.29999999999999999" translatesAutoresizingMaskIntoConstraints="NO" id="hd2-ra-pRq">
                                         <rect key="frame" x="27" y="8" width="263" height="125"/>
@@ -76,6 +79,9 @@
                                         </constraints>
                                         <state key="normal" image="up_half.png"/>
                                         <state key="highlighted" image="up_half_selected.png"/>
+                                        <connections>
+                                            <action selector="moveEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rGg-pU-yHv"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wwm-cd-Y9f">
                                         <rect key="frame" x="308" y="70" width="49" height="71"/>
@@ -84,6 +90,9 @@
                                         </constraints>
                                         <state key="normal" image="down_half.png"/>
                                         <state key="highlighted" image="down_half_selected.png"/>
+                                        <connections>
+                                            <action selector="moveEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wK6-U6-O17"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sputnik was launched by the USSR" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lx2-9l-g15">
                                         <rect key="frame" x="27" y="8" width="263" height="125"/>
@@ -124,6 +133,9 @@
                                         </constraints>
                                         <state key="normal" image="up_half.png"/>
                                         <state key="highlighted" image="up_half_selected.png"/>
+                                        <connections>
+                                            <action selector="moveEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="95M-Ly-grp"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Khi-co-gfM">
                                         <rect key="frame" x="308" y="70" width="49" height="71"/>
@@ -132,6 +144,9 @@
                                         </constraints>
                                         <state key="normal" image="down_half.png"/>
                                         <state key="highlighted" image="down_half_selected.png"/>
+                                        <connections>
+                                            <action selector="moveEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4uD-DS-8mv"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sputnik was launched by the USSR" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ac-Ch-AEg">
                                         <rect key="frame" x="27" y="8" width="263" height="125"/>
@@ -171,6 +186,9 @@
                                         </constraints>
                                         <state key="normal" image="up_full.png"/>
                                         <state key="highlighted" image="up_full_selected.png"/>
+                                        <connections>
+                                            <action selector="moveEvent:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZeD-BY-bgA"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sputnik was launched by the USSR" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XwB-e4-HXp">
                                         <rect key="frame" x="27" y="8" width="263" height="125"/>
@@ -199,7 +217,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="hzh-sU-bUl">
                                 <rect key="frame" x="29" y="633" width="357" height="86"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" text="0:35" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="YM8-9l-Qv5">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" text="0:60" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="YM8-9l-Qv5">
                                         <rect key="frame" x="308" y="0.0" width="0.0" height="65.666666666666671"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="55"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -238,9 +256,16 @@
                     </view>
                     <connections>
                         <outlet property="eventFourLabel" destination="XwB-e4-HXp" id="aOC-5F-qfk"/>
+                        <outlet property="eventFourUp" destination="upa-E6-x4h" id="HDx-LZ-ze8"/>
+                        <outlet property="eventOneDown" destination="0Xb-mP-44L" id="1ls-bj-Wb4"/>
                         <outlet property="eventOneLabel" destination="hd2-ra-pRq" id="ZNn-Og-hqb"/>
+                        <outlet property="eventThreeDown" destination="Khi-co-gfM" id="gui-la-3oX"/>
                         <outlet property="eventThreeLabel" destination="9ac-Ch-AEg" id="Fke-Oa-YzY"/>
+                        <outlet property="eventThreeUp" destination="GNn-ZO-3px" id="3HT-xX-zYd"/>
+                        <outlet property="eventTwoDown" destination="Wwm-cd-Y9f" id="2nf-Xn-Na2"/>
                         <outlet property="eventTwoLabel" destination="Lx2-9l-g15" id="w5x-1M-z3d"/>
+                        <outlet property="eventTwoUp" destination="Fp5-nT-e5X" id="4mb-NW-fIe"/>
+                        <outlet property="timerLabel" destination="YM8-9l-Qv5" id="YX0-gt-3G5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -42,6 +42,21 @@ struct EventManager {
     }
 }
 
+func orderOfEventsAreCorrect(eventOne: HistoricalEvent, eventTwo: HistoricalEvent, eventThree: HistoricalEvent, eventFour: HistoricalEvent) -> Bool {
+    
+    if eventOne.eventYear <= eventTwo.eventYear && eventTwo.eventYear <= eventThree.eventYear && eventThree.eventYear <= eventFour.eventYear{
+        
+        return true
+        
+    }
+    else{
+        
+        return false
+        
+    }
+    
+}
+
 ///Manages the game side - round, current round, userscore, increment score, next round etc.
 struct GameManagement {
     //Game Round Constant
