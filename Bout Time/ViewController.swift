@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
     
@@ -46,6 +47,8 @@ class ViewController: UIViewController {
     var timer = Timer()
     
     //Sounds
+    var correctSound: SystemSoundID = 0
+    var incorrectSound: SystemSoundID = 0
     
     //Events
     var eventOne: HistoricalEvent?
@@ -67,6 +70,7 @@ class ViewController: UIViewController {
         self.becomeFirstResponder()
         //Initial setup
         startNewRound()
+        loadGameStartSound()
         
     }
     
@@ -132,13 +136,14 @@ class ViewController: UIViewController {
         if let eventOne = eventOne, let eventTwo = eventTwo, let eventThree = eventThree, let eventFour = eventFour {
             if orderOfEventsAreCorrect(eventOne: eventOne, eventTwo: eventTwo, eventThree: eventThree, eventFour: eventFour) {
                 //Order is correct! Award the user a point and end the round.
-                gameManager.incrementScore()
+                print(gameManager.userScore)
                 print("correct order")
                 endCurrentRound(withCorrectOrder: true)
                 enableEventMovementInteractivity(bool: false)
                 nextRound.isHidden = false
                 timerLabel.isHidden = true
                 nextRound.setImage(UIImage(named: "next_round_success.png"), for: .normal)
+                playCorrectSound()
                 if isEndOfGame() {
                     footerLabel.text = "Tap next to see final score!"
                 } else{
@@ -153,7 +158,7 @@ class ViewController: UIViewController {
                 nextRound.isHidden = false
                 timerLabel.isHidden = true
                 nextRound.setImage(UIImage(named: "next_round_fail.png"), for: .normal)
-                
+                playIncorrectSound()
                 if isEndOfGame() {
                     footerLabel.text = "Tap next to see final score!"
                 } else{
@@ -290,6 +295,28 @@ class ViewController: UIViewController {
         endRoundAndCheckOrder()
     }
     
+    //=====//Game Sounds//=====//
+    
+    ///Game sound setup
+    func loadGameStartSound() {
+        let pathToCorrectSoundFile = Bundle.main.path(forResource: "CorrectDing", ofType: "wav")
+        let correctGameURL = URL(fileURLWithPath: pathToCorrectSoundFile!)
+        AudioServicesCreateSystemSoundID(correctGameURL as CFURL, &correctSound)
+        
+        let pathToIncorrectSoundFile = Bundle.main.path(forResource: "IncorrectBuzz", ofType: "wav")
+        
+        let soundIncorrectURL = URL(fileURLWithPath: pathToIncorrectSoundFile!)
+        AudioServicesCreateSystemSoundID(soundIncorrectURL as CFURL, &incorrectSound)
+    }
+
+    ///Function that needs to be called when a users events aren't in the correct order
+    func playIncorrectSound() {
+        AudioServicesPlaySystemSound(incorrectSound)
+    }
+    ///Function that needs to be called when a users events are in the correct order
+    func playCorrectSound() {
+        AudioServicesPlaySystemSound(correctSound)
+    }
     
     //======//MEMORY WARNING//======//
     

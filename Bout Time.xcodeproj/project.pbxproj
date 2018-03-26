@@ -37,6 +37,8 @@
 		F29F03A32061C0D200CB0C70 /* Bout_TimeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F29F03A22061C0D200CB0C70 /* Bout_TimeUITests.swift */; };
 		F2A3DA0520631679008FA1E1 /* HistoryBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A3DA0420631679008FA1E1 /* HistoryBook.swift */; };
 		F2A3DA07206320DF008FA1E1 /* GameShowHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A3DA06206320DF008FA1E1 /* GameShowHost.swift */; };
+		F2E305B62069B3B800C16D44 /* CorrectDing.wav in Resources */ = {isa = PBXBuildFile; fileRef = F2E305B42069B3B800C16D44 /* CorrectDing.wav */; };
+		F2E305B72069B3B800C16D44 /* IncorrectBuzz.wav in Resources */ = {isa = PBXBuildFile; fileRef = F2E305B52069B3B800C16D44 /* IncorrectBuzz.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +95,8 @@
 		F29F03A42061C0D200CB0C70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F2A3DA0420631679008FA1E1 /* HistoryBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryBook.swift; sourceTree = "<group>"; };
 		F2A3DA06206320DF008FA1E1 /* GameShowHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameShowHost.swift; sourceTree = "<group>"; };
+		F2E305B42069B3B800C16D44 /* CorrectDing.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = CorrectDing.wav; sourceTree = "<group>"; };
+		F2E305B52069B3B800C16D44 /* IncorrectBuzz.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = IncorrectBuzz.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +175,7 @@
 		F29F03812061C0D200CB0C70 /* Bout Time */ = {
 			isa = PBXGroup;
 			children = (
+				F2E305B32069B39900C16D44 /* Sounds */,
 				F27D53672061C94400757923 /* Images */,
 				F29F03822061C0D200CB0C70 /* AppDelegate.swift */,
 				F29F03842061C0D200CB0C70 /* ViewController.swift */,
@@ -200,6 +205,15 @@
 				F29F03A42061C0D200CB0C70 /* Info.plist */,
 			);
 			path = "Bout TimeUITests";
+			sourceTree = "<group>";
+		};
+		F2E305B32069B39900C16D44 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				F2E305B42069B3B800C16D44 /* CorrectDing.wav */,
+				F2E305B52069B3B800C16D44 /* IncorrectBuzz.wav */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -312,8 +326,10 @@
 				F29F038D2061C0D200CB0C70 /* LaunchScreen.storyboard in Resources */,
 				F27D538F2061C95500757923 /* up_full.png in Resources */,
 				F29F038A2061C0D200CB0C70 /* Assets.xcassets in Resources */,
+				F2E305B72069B3B800C16D44 /* IncorrectBuzz.wav in Resources */,
 				F27D538E2061C95500757923 /* up_full_selected.png in Resources */,
 				F27D537D2061C95500757923 /* down_full.png in Resources */,
+				F2E305B62069B3B800C16D44 /* CorrectDing.wav in Resources */,
 				F27D53882061C95500757923 /* down_half_selected.png in Resources */,
 				F27D537E2061C95500757923 /* down_full_selected.png in Resources */,
 				F27D53832061C95500757923 /* icon58@2x.png in Resources */,
@@ -529,6 +545,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 947BDAE7U7;
 				INFOPLIST_FILE = "Bout Time/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bedhair.Bout-Time";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -544,6 +561,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 947BDAE7U7;
 				INFOPLIST_FILE = "Bout Time/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bedhair.Bout-Time";
 				PRODUCT_NAME = "$(TARGET_NAME)";
