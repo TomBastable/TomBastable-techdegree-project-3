@@ -25,9 +25,16 @@ class ViewController: UIViewController {
     @IBOutlet weak var eventThreeUp: UIButton!
     @IBOutlet weak var eventThreeDown: UIButton!
     @IBOutlet weak var eventFourUp: UIButton!
+                            //Next Round / Footer Label
+    @IBOutlet weak var nextRound: UIButton!
+    @IBOutlet weak var footerLabel: UILabel!
                             //Timer Label
     @IBOutlet weak var timerLabel: UILabel!
+                            //Play again view
+    @IBOutlet weak var playAgainView: UIView!
+    @IBOutlet weak var scoreLabel: UILabel!
     
+
     
     //Game management
     var eventManager = EventManager()
@@ -35,7 +42,7 @@ class ViewController: UIViewController {
     
     //Timer
     let totalTime = 60
-    var seconds = 0 //The max ammount of time per question
+    var seconds = 0
     var timer = Timer()
     
     //Sounds
@@ -56,18 +63,19 @@ class ViewController: UIViewController {
         
         //Set time per round
         seconds = totalTime
-        
         // To get shake gesture
         self.becomeFirstResponder()
-        
         //Initial setup
         startNewRound()
+        
     }
     
     //This function should be called at the beginning of every new game eg: Initialisation and after completion of a game.
     func startNewRound(){
         //Start the timer
         runTimer()
+        seconds = totalTime
+        timerLabel.text = "0:60"
         //set nil values to current events
         eventOne = nil
         eventTwo = nil
@@ -80,6 +88,15 @@ class ViewController: UIViewController {
         eventFour = eventManager.randomEvent()
         //refresh all four events on screen
         refreshEventsUI()
+        //Hide next round button
+        nextRound.isHidden = true
+        playAgainView.isHidden = true
+        //Check if the order is already in the right order, if it is, swap event one with three
+        if let eventOne = eventOne, let eventTwo = eventTwo, let eventThree = eventThree, let eventFour = eventFour {
+            if orderOfEventsAreCorrect(eventOne: eventOne, eventTwo: eventTwo, eventThree: eventThree, eventFour: eventFour) {
+                swap(&self.eventOne, &self.eventThree)
+            }
+        }
     }
     
     ///This function should be called to update the eventsLabels after events have been moved or refreshed
@@ -108,6 +125,112 @@ class ViewController: UIViewController {
         
     }
     
+    //========//Check order and end round//========//
+    
+    func endRoundAndCheckOrder(){
+        
+        if let eventOne = eventOne, let eventTwo = eventTwo, let eventThree = eventThree, let eventFour = eventFour {
+            if orderOfEventsAreCorrect(eventOne: eventOne, eventTwo: eventTwo, eventThree: eventThree, eventFour: eventFour) {
+                //Order is correct! Award the user a point and end the round.
+                gameManager.incrementScore()
+                print("correct order")
+                endCurrentRound(withCorrectOrder: true)
+                enableEventMovementInteractivity(bool: false)
+                nextRound.isHidden = false
+                timerLabel.isHidden = true
+                nextRound.setImage(UIImage(named: "next_round_success.png"), for: .normal)
+                if isEndOfGame() {
+                    footerLabel.text = "Tap next to see final score!"
+                } else{
+                    footerLabel.text = "Tap Event For More Info"
+                }
+            }
+            else{
+                //Order is incorrect, end round without awarding a point
+                print("incorrect order")
+                endCurrentRound(withCorrectOrder: false)
+                enableEventMovementInteractivity(bool: false)
+                nextRound.isHidden = false
+                timerLabel.isHidden = true
+                nextRound.setImage(UIImage(named: "next_round_fail.png"), for: .normal)
+                
+                if isEndOfGame() {
+                    footerLabel.text = "Tap next to see final score!"
+                } else{
+                    footerLabel.text = "Tap Event For More Info"
+                }
+            }
+        }
+        
+    }
+    
+    //=========//Check for next round or end of game//=========//
+    
+    func isEndOfGame() -> Bool {
+        if gameManager.currentRound == gameManager.rounds {
+            //End of game.
+            return true
+        } else{
+            return false
+        }
+    }
+    
+    //=======//Next Round//=======//
+    
+    
+    @IBAction func nextRoundOrPlayAgain(_ sender: UIButton) {
+        
+        if isEndOfGame() {
+            print("end of game")
+            //Present Play Again Button Image
+            playAgainView.isHidden = false
+            scoreLabel.text = "\(gameManager.userScore)/\(gameManager.rounds)"
+        } else {
+            startNewRound()
+            nextRound.isHidden = true
+            timerLabel.isHidden = false
+            enableEventMovementInteractivity(bool: true)
+            gameManager.nextRound()
+            footerLabel.text = "Shake to complete"
+        }
+    }
+    //=======//Play Again//=======//
+    
+    @IBAction func playAgain(_ sender: UIButton) {
+        gameManager.currentRound = 1
+        gameManager.userScore = 0
+        startNewRound()
+        playAgainView.isHidden = true
+        timerLabel.isHidden = false
+        enableEventMovementInteractivity(bool: true)
+    }
+    
+    
+    //========//Disable event movement buttons//=========//
+    
+    //Created to stop users from moving events once a round is over
+    
+    func enableEventMovementInteractivity(bool: Bool){
+        eventOneDown.isEnabled = bool
+        eventTwoUp.isEnabled = bool
+        eventTwoDown.isEnabled = bool
+        eventThreeUp.isEnabled = bool
+        eventThreeDown.isEnabled = bool
+        eventFourUp.isEnabled = bool
+    }
+    
+    //========//End current round//========//
+    
+    //If the user has arranged events into the correct order, increment their score.
+    
+    func endCurrentRound(withCorrectOrder correctOrder: Bool){
+        timer.invalidate()
+        
+        if correctOrder{
+            gameManager.incrementScore()
+        }
+    }
+    
     //========//Shake Gesture//=======//
     
     // We are willing to become first responder to get shake motion
@@ -121,32 +244,15 @@ class ViewController: UIViewController {
     override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
             // User has finished ordering the vents, check for validity.
-            if let eventOne = eventOne, let eventTwo = eventTwo, let eventThree = eventThree, let eventFour = eventFour {
-                if orderOfEventsAreCorrect(eventOne: eventOne, eventTwo: eventTwo, eventThree: eventThree, eventFour: eventFour) {
-                    //Order is correct! Award the user a point and end the round.
-                    gameManager.incrementScore()
-                    print("correct order")
-                    endCurrentRound(withCorrectOrder: true)
-                }
-                else{
-                    //Order is incorrect, end round without awarding a point
-                    print("incorrect order")
-                    endCurrentRound(withCorrectOrder: false)
-                }
+            
+            //Only fire if the timer is running - saves from a shake being triggered
+            //between rounds
+            if timer.isValid {
+            endRoundAndCheckOrder()
             }
         }
     }
-    
-    //========//End current round//========//
-    
-    func endCurrentRound(withCorrectOrder correctOrder: Bool){
-        timer.invalidate()
-        
-        if correctOrder{
-            gameManager.incrementScore()
-        }
-    }
-    
+
     //========//Timer Functionality//=======//
     
     ///Function to start a timer, that calls another function every second to update the timerLabel to show the user their countdown
@@ -159,17 +265,29 @@ class ViewController: UIViewController {
         seconds -= 1
         //If the timer is at 0, the user has ran out of time
         if seconds == 0 {
+            timerLabel.text = "0:00"
             timer.invalidate()
             seconds = totalTime
             timeRanOut()
         } else{
             //if the timer isn't at 0, keep updating the label!
-            timerLabel.text = "0:\(seconds)"
+            
+            //if there are less than 10 seconds, and a 0 before an int for vanity.
+            if seconds < 10{
+               timerLabel.text = "0:0\(seconds)"
+            }
+            else{
+                //if there's more than ten seconds, an extra 0 isn't required.
+               timerLabel.text = "0:\(seconds)"
+            }
+            
         }
     }
     
-   func timeRanOut() {
+    //=====//Time ran out function//=====//
     
+   func timeRanOut() {
+        endRoundAndCheckOrder()
     }
     
     
@@ -179,7 +297,5 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
 }
 
