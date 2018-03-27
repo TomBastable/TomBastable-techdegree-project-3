@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F250B2332069CAC800D30ACC /* WebKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F250B2322069CAC800D30ACC /* WebKitViewController.swift */; };
 		F27D537C2061C95500757923 /* icon87@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F27D53682061C95300757923 /* icon87@3x.png */; };
 		F27D537D2061C95500757923 /* down_full.png in Resources */ = {isa = PBXBuildFile; fileRef = F27D53692061C95300757923 /* down_full.png */; };
 		F27D537E2061C95500757923 /* down_full_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = F27D536A2061C95300757923 /* down_full_selected.png */; };
@@ -59,6 +60,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F250B2322069CAC800D30ACC /* WebKitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebKitViewController.swift; sourceTree = "<group>"; };
 		F27D53682061C95300757923 /* icon87@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon87@3x.png"; sourceTree = "<group>"; };
 		F27D53692061C95300757923 /* down_full.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down_full.png; sourceTree = "<group>"; };
 		F27D536A2061C95300757923 /* down_full_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down_full_selected.png; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				F27D53672061C94400757923 /* Images */,
 				F29F03822061C0D200CB0C70 /* AppDelegate.swift */,
 				F29F03842061C0D200CB0C70 /* ViewController.swift */,
+				F250B2322069CAC800D30ACC /* WebKitViewController.swift */,
 				F2A3DA0420631679008FA1E1 /* HistoryBook.swift */,
 				F2A3DA06206320DF008FA1E1 /* GameShowHost.swift */,
 				F29F03862061C0D200CB0C70 /* Main.storyboard */,
@@ -376,6 +379,7 @@
 				F29F03852061C0D200CB0C70 /* ViewController.swift in Sources */,
 				F29F03832061C0D200CB0C70 /* AppDelegate.swift in Sources */,
 				F2A3DA07206320DF008FA1E1 /* GameShowHost.swift in Sources */,
+				F250B2332069CAC800D30ACC /* WebKitViewController.swift in Sources */,
 				F2A3DA0520631679008FA1E1 /* HistoryBook.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

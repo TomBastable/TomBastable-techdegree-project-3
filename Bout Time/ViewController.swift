@@ -19,6 +19,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var eventTwoLabel: UILabel!
     @IBOutlet weak var eventThreeLabel: UILabel!
     @IBOutlet weak var eventFourLabel: UILabel!
+                            //Event views
+    @IBOutlet weak var eventOneView: UIView!
+    @IBOutlet weak var eventTwoView: UIView!
+    @IBOutlet weak var eventThreeView: UIView!
+    @IBOutlet weak var eventFourView: UIView!
                             //Event Movement Buttons
     @IBOutlet weak var eventOneDown: UIButton!
     @IBOutlet weak var eventTwoUp: UIButton!
@@ -56,6 +61,14 @@ class ViewController: UIViewController {
     var eventThree: HistoricalEvent?
     var eventFour: HistoricalEvent?
     
+    //Event buttons
+    var eventButtonOne: UIButton = UIButton()
+    var eventButtonTwo: UIButton = UIButton()
+    var eventButtonThree: UIButton = UIButton()
+    var eventButtonFour: UIButton = UIButton()
+    
+    var detailString: String = ""
+    
     ///----///CONSTANTS AND VARIABLES END///----///
     
     override func viewDidLoad() {
@@ -71,6 +84,8 @@ class ViewController: UIViewController {
         //Initial setup
         startNewRound()
         loadGameStartSound()
+        createEventButtons()
+        enableEventMovementInteractivity(bool: true)
         
     }
     
@@ -110,6 +125,55 @@ class ViewController: UIViewController {
         eventThreeLabel.text = eventThree?.eventDescription
         eventFourLabel.text = eventFour?.eventDescription
     }
+    
+    func createEventButtons() {
+        eventButtonOne = UIButton(frame: eventOneLabel.frame)
+        eventButtonTwo = UIButton(frame: eventTwoLabel.frame)
+        eventButtonThree = UIButton(frame: eventThreeLabel.frame)
+        eventButtonFour = UIButton(frame: eventFourLabel.frame)
+        
+        eventButtonOne.addTarget(self, action: #selector(eventDetailRequested), for: .touchUpInside)
+        eventButtonTwo.addTarget(self, action: #selector(eventDetailRequested), for: .touchUpInside)
+        eventButtonThree.addTarget(self, action: #selector(eventDetailRequested), for: .touchUpInside)
+        eventButtonFour.addTarget(self, action: #selector(eventDetailRequested), for: .touchUpInside)
+        
+        //Unwrap
+        self.eventOneView.addSubview(eventButtonOne)
+        self.eventTwoView.addSubview(eventButtonTwo)
+        self.eventThreeView.addSubview(eventButtonThree)
+        self.eventFourView.addSubview(eventButtonFour)
+    }
+    
+    @objc func eventDetailRequested(sender: UIButton!) {
+        
+        
+        if sender == eventButtonOne {
+            detailString = eventOne!.informationalURL
+        }
+        else if sender == eventButtonTwo{
+            detailString = eventTwo!.informationalURL
+        }
+        else if sender == eventButtonThree{
+            detailString = eventThree!.informationalURL
+        }
+        else if sender == eventButtonFour{
+            detailString = eventFour!.informationalURL
+        }
+        
+        print(detailString)
+        
+        performSegue(withIdentifier: "webKitSegue", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "webKitSegue" {
+            if let vc = segue.destination as? WebKitViewController {
+                
+                vc.eventUrl = detailString
+            }
+        }
+    }
+
     
     @IBAction func moveEvent(_ sender: UIButton) {
         
@@ -211,7 +275,7 @@ class ViewController: UIViewController {
     }
     
     
-    //========//Disable event movement buttons//=========//
+    //========//Disable event movement & detail buttons//=========//
     
     //Created to stop users from moving events once a round is over
     
@@ -222,6 +286,12 @@ class ViewController: UIViewController {
         eventThreeUp.isEnabled = bool
         eventThreeDown.isEnabled = bool
         eventFourUp.isEnabled = bool
+    
+        
+        eventButtonOne.isHidden = bool
+        eventButtonTwo.isHidden = bool
+        eventButtonThree.isHidden = bool
+        eventButtonFour.isHidden = bool
     }
     
     //========//End current round//========//

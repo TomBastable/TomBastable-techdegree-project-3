@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -323,24 +323,66 @@
                     <connections>
                         <outlet property="eventFourLabel" destination="XwB-e4-HXp" id="aOC-5F-qfk"/>
                         <outlet property="eventFourUp" destination="upa-E6-x4h" id="HDx-LZ-ze8"/>
+                        <outlet property="eventFourView" destination="1B4-wL-7Qe" id="XD5-4Y-ZyN"/>
                         <outlet property="eventOneDown" destination="0Xb-mP-44L" id="1ls-bj-Wb4"/>
                         <outlet property="eventOneLabel" destination="hd2-ra-pRq" id="ZNn-Og-hqb"/>
+                        <outlet property="eventOneView" destination="PhS-gK-As0" id="6kR-ni-axV"/>
                         <outlet property="eventThreeDown" destination="Khi-co-gfM" id="gui-la-3oX"/>
                         <outlet property="eventThreeLabel" destination="9ac-Ch-AEg" id="Fke-Oa-YzY"/>
                         <outlet property="eventThreeUp" destination="GNn-ZO-3px" id="3HT-xX-zYd"/>
+                        <outlet property="eventThreeView" destination="s2h-K4-AQO" id="Fgf-Lc-IOk"/>
                         <outlet property="eventTwoDown" destination="Wwm-cd-Y9f" id="2nf-Xn-Na2"/>
                         <outlet property="eventTwoLabel" destination="Lx2-9l-g15" id="w5x-1M-z3d"/>
                         <outlet property="eventTwoUp" destination="Fp5-nT-e5X" id="4mb-NW-fIe"/>
+                        <outlet property="eventTwoView" destination="b0N-Qk-rgX" id="KHg-sX-nX2"/>
                         <outlet property="footerLabel" destination="qG3-ay-ekV" id="7JO-OS-u21"/>
                         <outlet property="nextRound" destination="oNs-mp-8Gb" id="305-cp-upg"/>
                         <outlet property="playAgainView" destination="wsz-t2-Cvx" id="rcp-Bk-WTv"/>
                         <outlet property="scoreLabel" destination="VCF-AC-Ao3" id="Xaf-i2-MKb"/>
                         <outlet property="timerLabel" destination="YM8-9l-Qv5" id="YX0-gt-3G5"/>
+                        <segue destination="nTi-aw-6oF" kind="show" identifier="webKitSegue" id="peo-4T-EeS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-78.260869565217391" y="133.69565217391306"/>
+        </scene>
+        <!--Web Kit View Controller-->
+        <scene sceneID="e7P-w2-Eiy">
+            <objects>
+                <viewController id="nTi-aw-6oF" customClass="WebKitViewController" customModule="Bout_Time" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GFr-j7-Pm1">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HCM-dY-NjX">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="webview_bar.png"/>
+                                <connections>
+                                    <action selector="popWebKitView:" destination="nTi-aw-6oF" eventType="touchUpInside" id="R9i-3g-EKJ"/>
+                                </connections>
+                            </button>
+                            <wkWebView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w2u-c2-vx8">
+                                <rect key="frame" x="0.0" y="51" width="414" height="685"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="lP0-me-fq2"/>
+                    </view>
+                    <connections>
+                        <outlet property="myWebView" destination="w2u-c2-vx8" id="dOJ-E9-Xsy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eXe-38-Ncc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="702.89855072463774" y="133.69565217391306"/>
         </scene>
     </scenes>
     <resources>
@@ -354,5 +396,6 @@
         <image name="up_full_selected.png" width="158" height="457"/>
         <image name="up_half.png" width="158" height="229"/>
         <image name="up_half_selected.png" width="158" height="229"/>
+        <image name="webview_bar.png" width="1333" height="167"/>
     </resources>
 </document>
