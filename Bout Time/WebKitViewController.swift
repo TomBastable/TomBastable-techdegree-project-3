@@ -10,7 +10,8 @@ import UIKit
 import WebKit
 
 class WebKitViewController: UIViewController, WKNavigationDelegate, WKUIDelegate {
-
+    
+    //String that will be assigned the eventUrl when requested.
     var eventUrl: String = ""
     
     @IBOutlet weak var myWebView: WKWebView!
@@ -24,7 +25,8 @@ class WebKitViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
             myWebView.load(req)
         }
     }
-
+    
+    //"One shall dismiss ones self when requested to" - Da Queen
     @IBAction func popWebKitView(_ sender: UIButton) {
         self.dismiss(animated: true)
     }
@@ -34,6 +36,7 @@ class WebKitViewController: UIViewController, WKNavigationDelegate, WKUIDelegate
         // Dispose of any resources that can be recreated.
     }
     
+    //To match the mockup I removed the status bar
     override var prefersStatusBarHidden: Bool {
         return true
     }

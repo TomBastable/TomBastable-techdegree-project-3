@@ -118,63 +118,7 @@ class ViewController: UIViewController {
         }
     }
     
-    ///This function should be called to update the eventsLabels after events have been moved or refreshed
-    func refreshEventsUI(){
-        eventOneLabel.text = eventOne?.eventDescription
-        eventTwoLabel.text = eventTwo?.eventDescription
-        eventThreeLabel.text = eventThree?.eventDescription
-        eventFourLabel.text = eventFour?.eventDescription
-    }
-    
-    func createEventButtons() {
-        eventButtonOne = UIButton(frame: eventOneLabel.frame)
-        eventButtonTwo = UIButton(frame: eventTwoLabel.frame)
-        eventButtonThree = UIButton(frame: eventThreeLabel.frame)
-        eventButtonFour = UIButton(frame: eventFourLabel.frame)
-        
-        eventButtonOne.addTarget(self, action: #selector(eventDetailRequested), for: .touchUpInside)
-        eventButtonTwo.addTarget(self, action: #selector(eventDetailRequested), for: .touchUpInside)
-        eventButtonThree.addTarget(self, action: #selector(eventDetailRequested), for: .touchUpInside)
-        eventButtonFour.addTarget(self, action: #selector(eventDetailRequested), for: .touchUpInside)
-        
-        //Unwrap
-        self.eventOneView.addSubview(eventButtonOne)
-        self.eventTwoView.addSubview(eventButtonTwo)
-        self.eventThreeView.addSubview(eventButtonThree)
-        self.eventFourView.addSubview(eventButtonFour)
-    }
-    
-    @objc func eventDetailRequested(sender: UIButton!) {
-        
-        
-        if sender == eventButtonOne {
-            detailString = eventOne!.informationalURL
-        }
-        else if sender == eventButtonTwo{
-            detailString = eventTwo!.informationalURL
-        }
-        else if sender == eventButtonThree{
-            detailString = eventThree!.informationalURL
-        }
-        else if sender == eventButtonFour{
-            detailString = eventFour!.informationalURL
-        }
-        
-        print(detailString)
-        
-        performSegue(withIdentifier: "webKitSegue", sender: nil)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "webKitSegue" {
-            if let vc = segue.destination as? WebKitViewController {
-                
-                vc.eventUrl = detailString
-            }
-        }
-    }
-
-    
+    //Function that moves events to the desired properties and refreshes the UI
     @IBAction func moveEvent(_ sender: UIButton) {
         
         //Work out which button was pressed and swap the values
@@ -193,8 +137,7 @@ class ViewController: UIViewController {
         
     }
     
-    //========//Check order and end round//========//
-    
+    ///Checks if the user has entered the correct order and deals with it accordingly
     func endRoundAndCheckOrder(){
         
         if let eventOne = eventOne, let eventTwo = eventTwo, let eventThree = eventThree, let eventFour = eventFour {
@@ -233,8 +176,7 @@ class ViewController: UIViewController {
         
     }
     
-    //=========//Check for next round or end of game//=========//
-    
+    ///Check for next round or end of game function
     func isEndOfGame() -> Bool {
         if gameManager.currentRound == gameManager.rounds {
             //End of game.
@@ -244,9 +186,8 @@ class ViewController: UIViewController {
         }
     }
     
-    //=======//Next Round//=======//
-    
-    
+    //Next Round//
+    ///Function that decides if the game needs a new round or if it's the end of the game
     @IBAction func nextRoundOrPlayAgain(_ sender: UIButton) {
         
         if isEndOfGame() {
@@ -263,7 +204,7 @@ class ViewController: UIViewController {
             footerLabel.text = "Shake to complete"
         }
     }
-    //=======//Play Again//=======//
+    //Play Again//
     
     @IBAction func playAgain(_ sender: UIButton) {
         gameManager.currentRound = 1
@@ -274,30 +215,8 @@ class ViewController: UIViewController {
         enableEventMovementInteractivity(bool: true)
     }
     
-    
-    //========//Disable event movement & detail buttons//=========//
-    
-    //Created to stop users from moving events once a round is over
-    
-    func enableEventMovementInteractivity(bool: Bool){
-        eventOneDown.isEnabled = bool
-        eventTwoUp.isEnabled = bool
-        eventTwoDown.isEnabled = bool
-        eventThreeUp.isEnabled = bool
-        eventThreeDown.isEnabled = bool
-        eventFourUp.isEnabled = bool
-    
-        
-        eventButtonOne.isHidden = bool
-        eventButtonTwo.isHidden = bool
-        eventButtonThree.isHidden = bool
-        eventButtonFour.isHidden = bool
-    }
-    
-    //========//End current round//========//
-    
+    //End current round//
     //If the user has arranged events into the correct order, increment their score.
-    
     func endCurrentRound(withCorrectOrder correctOrder: Bool){
         timer.invalidate()
         
@@ -306,8 +225,7 @@ class ViewController: UIViewController {
         }
     }
     
-    //========//Shake Gesture//=======//
-    
+    //Shake Gesture//
     // We are willing to become first responder to get shake motion
     override var canBecomeFirstResponder: Bool {
         get {
@@ -328,7 +246,7 @@ class ViewController: UIViewController {
         }
     }
 
-    //========//Timer Functionality//=======//
+    //Timer Functionality//
     
     ///Function to start a timer, that calls another function every second to update the timerLabel to show the user their countdown
     func runTimer() {
@@ -359,16 +277,20 @@ class ViewController: UIViewController {
         }
     }
     
-    //=====//Time ran out function//=====//
+    ////Time ran out function////
     
    func timeRanOut() {
         endRoundAndCheckOrder()
     }
     
-    //=====//Game Sounds//=====//
+
+    //======//UI Management//======//
     
-    ///Game sound setup
+    //Game Sounds//
+    
+    ///Game sound file initialisation
     func loadGameStartSound() {
+        
         let pathToCorrectSoundFile = Bundle.main.path(forResource: "CorrectDing", ofType: "wav")
         let correctGameURL = URL(fileURLWithPath: pathToCorrectSoundFile!)
         AudioServicesCreateSystemSoundID(correctGameURL as CFURL, &correctSound)
@@ -377,15 +299,91 @@ class ViewController: UIViewController {
         
         let soundIncorrectURL = URL(fileURLWithPath: pathToIncorrectSoundFile!)
         AudioServicesCreateSystemSoundID(soundIncorrectURL as CFURL, &incorrectSound)
+        
     }
-
-    ///Function that needs to be called when a users events aren't in the correct order
+    
+    ///Function that plays a sound when an answer is incorrect
     func playIncorrectSound() {
         AudioServicesPlaySystemSound(incorrectSound)
     }
-    ///Function that needs to be called when a users events are in the correct order
+    ///Function that plays a sound when an answer is correct
     func playCorrectSound() {
         AudioServicesPlaySystemSound(correctSound)
+    }
+    
+    //Disable event movement & detail buttons//
+    ///stops users from moving events once a round is over and unhides / hides the event detail buttons
+    func enableEventMovementInteractivity(bool: Bool){
+        eventOneDown.isEnabled = bool
+        eventTwoUp.isEnabled = bool
+        eventTwoDown.isEnabled = bool
+        eventThreeUp.isEnabled = bool
+        eventThreeDown.isEnabled = bool
+        eventFourUp.isEnabled = bool
+        //If the event movement buttons are disabled, display the event detail buttons
+        //that segue to a webkitview
+        eventButtonOne.isHidden = bool
+        eventButtonTwo.isHidden = bool
+        eventButtonThree.isHidden = bool
+        eventButtonFour.isHidden = bool
+    }
+    
+    ///This function should be called to update the eventsLabels after events have been moved or refreshed
+    func refreshEventsUI(){
+        eventOneLabel.text = eventOne?.eventDescription
+        eventTwoLabel.text = eventTwo?.eventDescription
+        eventThreeLabel.text = eventThree?.eventDescription
+        eventFourLabel.text = eventFour?.eventDescription
+    }
+    
+    ///Programatically created the four invisible buttons that segue to the Event Detail view
+    func createEventButtons() {
+        //Initialise
+        eventButtonOne = UIButton(frame: eventOneLabel.frame)
+        eventButtonTwo = UIButton(frame: eventTwoLabel.frame)
+        eventButtonThree = UIButton(frame: eventThreeLabel.frame)
+        eventButtonFour = UIButton(frame: eventFourLabel.frame)
+        //Add target
+        eventButtonOne.addTarget(self, action: #selector(eventDetailRequested), for: .touchUpInside)
+        eventButtonTwo.addTarget(self, action: #selector(eventDetailRequested), for: .touchUpInside)
+        eventButtonThree.addTarget(self, action: #selector(eventDetailRequested), for: .touchUpInside)
+        eventButtonFour.addTarget(self, action: #selector(eventDetailRequested), for: .touchUpInside)
+        
+        //Add to subview
+        self.eventOneView.addSubview(eventButtonOne)
+        self.eventTwoView.addSubview(eventButtonTwo)
+        self.eventThreeView.addSubview(eventButtonThree)
+        self.eventFourView.addSubview(eventButtonFour)
+    }
+    
+    ///Function that deals with a user requesting more detail on a selected event
+    @objc func eventDetailRequested(sender: UIButton!) {
+        
+        //Decide which event has the touch event and assign it to detailString
+        if sender == eventButtonOne {
+            detailString = eventOne!.informationalURL
+        }
+        else if sender == eventButtonTwo{
+            detailString = eventTwo!.informationalURL
+        }
+        else if sender == eventButtonThree{
+            detailString = eventThree!.informationalURL
+        }
+        else if sender == eventButtonFour{
+            detailString = eventFour!.informationalURL
+        }
+        //Segue to detail view
+        performSegue(withIdentifier: "webKitSegue", sender: nil)
+    }
+    
+    //override the prepare for segue function to assign the detailString to the detail views eventUrl property
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "webKitSegue" {
+            if let vc = segue.destination as? WebKitViewController {
+                
+                vc.eventUrl = detailString
+            }
+        }
     }
     
     //======//MEMORY WARNING//======//
