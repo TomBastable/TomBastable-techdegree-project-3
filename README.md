@@ -2,6 +2,8 @@
 
 Grade Attempted: Exceeds Expectations
 
+Grade Achieved: Exceeds Expectations
+
 Project Brief:
 
 For this project, you’ll be building an actual game, ‘Bout Time, from the ground up.
